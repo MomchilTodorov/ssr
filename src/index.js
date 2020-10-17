@@ -17,15 +17,7 @@ import createStore from "./helpers/createStore.js";
 
 const app = express();
 
-app.use(
-  "/api",
-  proxy("http://react-ssr-api.herokuapp.com", {
-    proxyReqOptDecorator(opts) {
-      opts.headers["x-forwarded-host"] = "ssrappreact.herokuapp.com";
-      return opts;
-    },
-  })
-);
+app.use("/api", proxy("http://react-ssr-api.herokuapp.com"));
 app.use(express.static("public"));
 app.get("*", (req, res) => {
   const store = createStore(req);
