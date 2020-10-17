@@ -1,2 +1,2 @@
-# ssr
-server side react app
+- Server Side React Boilerplate with Redux
+- SEO with React-Helmet
