@@ -1,5 +1,7 @@
 // Startup point for the client side application
-import "regenerator-runtime/runtime";
+//adding the code to do the bootup process to rehydrate/render the app in the browser again
+
+import "@babel/polyfill";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
@@ -7,19 +9,17 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import { renderRoutes } from "react-router-config";
-import axios from "axios";
 import Routes from "./Routes";
-import reducers from "./reducers";
+import reducers from "../reducers";
 
-const axiosInstance = axios.create({
-  baseURL: "/api", //prepends /api to the url request we're trying to make, e.g. /api/users
-});
+// Grab the state from a global variable injected into the server-generated HTML
+const preloadedState = window.__PRELOADED_STATE__;
 
-const store = createStore(
-  reducers,
-  window.INITIAL_STATE,
-  applyMiddleware(thunk.withExtraArgument(axiosInstance))
-);
+// Allow the passed state to be garbage-collected
+delete window.__PRELOADED_STATE__;
+
+// Create Redux store with initial state
+const store = createStore(reducers, preloadedState, applyMiddleware(thunk));
 
 ReactDOM.hydrate(
   <Provider store={store}>

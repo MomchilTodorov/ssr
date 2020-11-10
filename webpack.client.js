@@ -1,10 +1,11 @@
 const path = require("path");
-const  merge = require("webpack-merge");
+const merge = require("webpack-merge");
 const baseConfig = require("./webpack.base.js");
 
 const config = {
   // Tell webpack the root file of our
-  // client application
+  // server application
+
   entry: "./src/client/client.js",
 
   // Tell webpack where to put the output file
