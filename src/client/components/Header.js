@@ -1,39 +1,29 @@
 //this is a component, there isn't any loading data requirements to it
 import React from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 
-const Header = ({ auth }) => {
-  console.log("My auth status is", auth);
-
-  const authButton = auth ? (
-    <a href="/api/logout">Logout</a>
-  ) : (
-    <a href="/api/auth/google">Login</a>
-  );
-
+const Header = () => {
   return (
-    <nav>
-      <div className="nav-wrapper">
-        <Link to="/" className="brand-logo">
-          React SSR
-        </Link>
-        <ul className="right">
-          <li>
-            <Link to="/users">Users</Link>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <Link to="/" class="navbar-brand">
+        React SSR
+      </Link>
+      <div>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <Link to="/movies" class="nav-link">
+              Movies
+            </Link>
           </li>
-          <li>
-            <Link to="/admins">Admins</Link>
+          <li class="nav-item">
+            <Link to="/tvshows" class="nav-link">
+              TV Shows
+            </Link>
           </li>
-          <li> {authButton}</li>
         </ul>
       </div>
     </nav>
   );
 };
 
-function mapStateToProps({ auth }) {
-  return { auth };
-}
-
-export default connect(mapStateToProps)(Header);
+export default Header;

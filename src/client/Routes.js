@@ -1,9 +1,7 @@
-import React from "react";
 import App from "./App";
 import HomePage from "./pages/HomePage";
-import UsersListPage from "./pages/UsersListPage";
-import NotFoundPage from './pages/NotFoundPage'
-import AdminsListPage from './pages/AdminsListPage';
+import MovieListPage from "./pages/MovieListPage";
+import TvShowsPage from "./pages/TvShowsPage";
 
 //using spread operator for the components
 //and loadData function(if available)
@@ -18,15 +16,12 @@ export default [
         exact: true,
       },
       {
-        ...AdminsListPage,
-        path: "/admins"
+        ...MovieListPage,
+        path: "/movies",
       },
       {
-        ...UsersListPage,
-        path: "/users",
-      },
-      {
-        ...NotFoundPage//will be shown if react router can't match any of the defined routes
+        ...TvShowsPage,
+        path: "/tvshows",
       },
     ],
   },
